@@ -23,6 +23,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/app_name_chooser"
+        android:layout_gravity="center"
+        android:text="@string/default_app_name"
+        android:hint="@string/app_name_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/action_launch_list"
         android:text="@string/launch_list_activity"

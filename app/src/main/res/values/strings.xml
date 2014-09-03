@@ -8,5 +8,7 @@
     <string name="launch_home_screen">Launch Home Screen</string>
     <string name="file_name">File Name</string>
     <string name="table_id">Table ID</string>
+    <string name="app_name_hint">App Name (use \'tables\' if unsure)</string>
+    <string name="default_app_name">tables</string>
 
 </resources>

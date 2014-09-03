@@ -17,6 +17,16 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+    /**
+     * These should match Constants.IntentKeys in Tables. Should maybe jar
+     * these up later or otherwise export them.
+     */
+    protected static class BundleArgs {
+        public static final String APP_NAME = "appName";
+        public static final String TABLE_ID = "tableId";
+        public static final String FILE_NAME = "filename";
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +65,7 @@ public class MainActivity extends Activity {
 
         TextView mTableIdView;
         TextView mFileNameView;
+        TextView mAppNameView;
 
         Button mLaunchListButton;
         Button mLaunchHomeScreenButton;
@@ -75,6 +86,8 @@ public class MainActivity extends Activity {
                     (TextView) rootView.findViewById(R.id.table_id_chooser);
             this.mFileNameView =
                     (TextView) rootView.findViewById(R.id.file_name_chooser);
+            this.mAppNameView =
+                    (TextView) rootView.findViewById(R.id.app_name_chooser);
 
             this.mLaunchHomeScreenButton =
                     (Button) rootView.findViewById(R.id.action_launch_list);
@@ -92,12 +105,23 @@ public class MainActivity extends Activity {
             return this.mTableIdView.getText().toString().trim();
         }
 
-        protected void addFileNameToBundle(Bundle bundle, String fileName) {
-
+        protected String getAppName() {
+            return this.mAppNameView.getText().toString().trim();
         }
 
-        protected void addTableIdToBundle(Bundle bundle, String tableId) {
-            
+        protected void addFileNameToBundle(Bundle bundle) {
+            String fileName = this.getFileName();
+            bundle.putString(BundleArgs.FILE_NAME, fileName);
+        }
+
+        protected void addTableIdToBundle(Bundle bundle) {
+            String tableId = this.getTableId();
+            bundle.putString(BundleArgs.TABLE_ID, tableId);
+        }
+
+        protected void addAppNameToBundle(Bundle bundle) {
+            String appName = this.getAppName();
+            bundle.putString(BundleArgs.APP_NAME, appName);
         }
     }
 }
