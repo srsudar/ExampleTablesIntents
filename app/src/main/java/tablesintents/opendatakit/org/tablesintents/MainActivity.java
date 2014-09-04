@@ -20,6 +20,8 @@ public class MainActivity extends Activity {
     protected static class IntentNames {
         public static final String MAIN_ACTIVITY =
                 "org.opendatakit.tables.activities.Launcher";
+        public static final String TABLE_DISPLAY_ACTIVITY =
+                "org.opendatakit.tables.activities.TableDisplayActivity";
 
     }
 
@@ -31,6 +33,7 @@ public class MainActivity extends Activity {
         public static final String APP_NAME = "appName";
         public static final String TABLE_ID = "tableId";
         public static final String FILE_NAME = "filename";
+        public static final String TABLE_DISPLAY_TYPE = "tableDisplayViewType";
     }
 
     @Override
@@ -119,6 +122,19 @@ public class MainActivity extends Activity {
                     getActivity().startActivity(intent);
                 }
             });
+
+            this.mLaunchListButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent =
+                            new Intent(IntentNames.TABLE_DISPLAY_ACTIVITY);
+                    Bundle args = new Bundle();
+                    addKeysToBundle(args);
+                    addListTypeToBundle(args);
+                    intent.putExtras(args);
+                    getActivity().startActivity(intent);
+                }
+            });
         }
 
         /**
@@ -146,6 +162,10 @@ public class MainActivity extends Activity {
         protected void addFileNameToBundle(Bundle bundle) {
             String fileName = this.getFileName();
             bundle.putString(BundleArgs.FILE_NAME, fileName);
+        }
+
+        protected void addListTypeToBundle(Bundle bundle) {
+            bundle.putString(BundleArgs.TABLE_DISPLAY_TYPE, "LIST");
         }
 
         protected void addTableIdToBundle(Bundle bundle) {
