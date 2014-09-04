@@ -14,3 +14,10 @@ Android Studio.
 
 The intent names and bundle keys are not yet exported or published anywhere, so
 for now they're hardcoded in.
+
+<p align="center">
+    <img
+        alt="Screenshot from example intents app."
+        src="images/exampleScreenshot.png"
+        width="350px" >
+</p>
