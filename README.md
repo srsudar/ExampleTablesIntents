@@ -9,7 +9,8 @@ an app building framework for Android that uses HTML and JavaScript. This
 single screen app demonstrates how you can start activities externally to open
 Tables to a custom home screen or table activity.
 
-The magic happens in the `PlaceHolderFragment` class helpfully constructed by
+The [magic](https://github.com/srsudar/ExampleTablesIntents/blob/master/app/src/main/java/tablesintents/opendatakit/org/tablesintents/MainActivity.java)
+happens in the `PlaceHolderFragment` class helpfully constructed by
 Android Studio.
 
 The intent names and bundle keys are not yet exported or published anywhere, so
