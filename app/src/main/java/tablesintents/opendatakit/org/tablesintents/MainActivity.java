@@ -17,6 +17,12 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+    protected static class IntentNames {
+        public static final String MAIN_ACTIVITY =
+                "org.opendatakit.tables.activities.Launcher";
+
+    }
+
     /**
      * These should match Constants.IntentKeys in Tables. Should maybe jar
      * these up later or otherwise export them.
@@ -76,7 +82,7 @@ public class MainActivity extends Activity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(
                     R.layout.fragment_main,
                     container,
@@ -89,12 +95,40 @@ public class MainActivity extends Activity {
             this.mAppNameView =
                     (TextView) rootView.findViewById(R.id.app_name_chooser);
 
-            this.mLaunchHomeScreenButton =
-                    (Button) rootView.findViewById(R.id.action_launch_list);
-            this.mLaunchListButton = (Button) rootView.findViewById(
+            this.mLaunchHomeScreenButton = (Button) rootView.findViewById(
                     R.id.action_launch_home_screen);
+            this.mLaunchListButton = (Button) rootView.findViewById(
+                    R.id.action_launch_list);
+
+            this.attachListeners();
 
             return rootView;
+        }
+
+        /**
+         * Add the listeners to the buttons that will handle the intents.
+         */
+        private void attachListeners() {
+            this.mLaunchHomeScreenButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(IntentNames.MAIN_ACTIVITY);
+                    Bundle args = new Bundle();
+                    addKeysToBundle(args);
+                    intent.putExtras(args);
+                    getActivity().startActivity(intent);
+                }
+            });
+        }
+
+        /**
+         * Add all the keys to the bundle.
+         * @param bundle
+         */
+        protected void addKeysToBundle(Bundle bundle) {
+            this.addAppNameToBundle(bundle);
+            this.addFileNameToBundle(bundle);
+            this.addTableIdToBundle(bundle);
         }
 
         protected String getFileName() {
